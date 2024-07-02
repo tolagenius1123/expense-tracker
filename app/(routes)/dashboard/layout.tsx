@@ -13,7 +13,7 @@ export default function DashboardLayout({
 			</div>
 			<div className="md:ml-64 border-2">
 				<DashboardHeader />
-				{children}
+				<div className="overflow-y-scroll">{children}</div>
 			</div>
 		</div>
 	);

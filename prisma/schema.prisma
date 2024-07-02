@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Budgets {
+  id        Int        @id @default(autoincrement())
+  name      String     
+  amount    String     
+  icon      String     
+  createdBy String
+  expenses  Expenses[] // This establishes the backrelation
+}
+
+model Expenses {
+  id        Int      @id @default(autoincrement())
+  name      String   
+  amount    String   
+  budgetId  Int      
+  budget    Budgets  @relation(fields: [budgetId], references: [id]) // This establishes the foreign key relation
+}

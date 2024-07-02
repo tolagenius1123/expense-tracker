@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "@/components/ui/toaster";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -16,10 +17,13 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<ClerkProvider>
-			<html lang="en">
-				<body className={outfit.className}>{children}</body>
-			</html>
-		</ClerkProvider>
+		<html lang="en">
+			<ClerkProvider>
+				<body className={outfit.className}>
+					<Toaster />
+					{children}
+				</body>
+			</ClerkProvider>
+		</html>
 	);
 }
